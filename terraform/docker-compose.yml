@@ -1,0 +1,21 @@
+version: "3.5"
+services:
+
+  tf:
+    container_name: tf
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: terraform
+    env_file:
+      - .env
+    working_dir: /app
+    volumes:
+      - .:/app
+    networks:
+      - terraform
+
+
+networks:
+  terraform:
+    driver: bridge
